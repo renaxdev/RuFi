@@ -61,10 +61,5 @@ You can find the STL files in the `hardware/case` folder of this repository.
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 🔗 Related Links
 - [ESPHome Documentation](https://esphome.io/)
