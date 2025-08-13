@@ -49,7 +49,7 @@ You can find the STL files in the `hardware/case` folder of this repository.
 ---
 
 ## 🚀 Getting Started
-1. **Flash** the ESP32-C6 with the included ESPHome YAML file (do not forget to change your WiFi credentials!).
+1. **Flash** the ESP32-C6 with the included ESPHome YAML file (do not forget to change your WiFi credentials and Homeassistant keys!).
 2. **Assemble** the hardware (wiring diagram in `hardware`).
 3. **Add** the device to Home Assistant.
 4. **Press the button** and enjoy silent (but loud and blinky) notifications.
