@@ -1,0 +1,89 @@
+esphome:
+  name: rufi
+  friendly_name: rufi
+
+esp32:
+  board: esp32-c6-devkitc-1
+  framework:
+    type: esp-idf
+    version: recommended
+
+
+logger:
+  level: VERBOSE
+  logs:
+    wifi: VERBOSE
+    wifi_esp32: VERBOSE
+    esp32.preferences: DEBUG
+
+api:
+  encryption:
+    key: "ADD_HOMEASSISTANT_API_KEY"
+  reboot_timeout: 0s  
+
+ota:
+  - platform: esphome
+    password: "ADD_ESPHOME_OTA_KEY"
+
+wifi:
+  ssid: "ADD_SSID"
+  password: "ADD_PASSWORD"
+
+  power_save_mode: none
+  fast_connect: false
+  reboot_timeout: 0s
+  enable_rrm: false
+  enable_btm: false
+  output_power: 20dB
+
+
+  ap:
+    ssid: "RuFi Fallback Hotspot"
+    password: "RenaxL0vesRuFi"
+
+captive_portal:
+
+output:
+  - platform: gpio
+    pin: 8
+    id: rote_led
+  
+  - platform: gpio
+    pin: 18
+    id: buzzer_output
+
+light:
+  - platform: binary
+    name: "Rufgerät LED"
+    id: rufgeraet_led
+    output: rote_led
+
+  - platform: status_led
+    name: "Status LED"
+    pin: 
+      number: GPIO15
+      inverted: true
+
+switch:
+  - platform: output
+    name: "Rufgerät Buzzer"
+    id: rufgeraet_buzzer
+    output: buzzer_output
+
+script:
+  - id: rufgeraet_aktivieren
+    then:
+      - light.turn_on: rufgeraet_led
+      - switch.turn_on: rufgeraet_buzzer
+      - logger.log: "Rufgerät aktiviert!"
+      - delay: 2s
+      - light.turn_off: rufgeraet_led
+      - switch.turn_off: rufgeraet_buzzer
+      - logger.log: "Rufgerät deaktiviert!"
+
+button:
+  - platform: template
+    name: "Rufgerät auslösen"
+    id: rufgeraet_button
+    on_press:
+      - script.execute: rufgeraet_aktivieren       

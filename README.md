@@ -58,6 +58,7 @@ You can find the STL files in the `hardware/case` folder of this repository.
 
 ## 📷 Gallery
 ![RuFi Device](https://mkoerner.dev/rufi.png)
+![Wiring diagram](hardware/wiringdiagram.png)
 
 ---
 
